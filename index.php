@@ -9,8 +9,14 @@
   <body>
     <?php
       include 'FileReader.php';
-      $test = new FileReader();
-      $test -> test_function();
+      try {
+        $test = new FileReader("a.txt");
+        echo $test -> load_file();
+      }
+      catch(Exception $e){
+        echo 'Error: ', $e->getMessage(), " ";
+      }
+     
 
     ?>
   </body>
