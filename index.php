@@ -7,11 +7,12 @@
     <title>Document</title>
   </head>
   <body>
+    <pre>
     <?php
       include 'FileReader.php';
       try {
-        $test = new FileReader("a.txt");
-        echo $test -> load_file();
+        $test = new FileReader("your_filename.json");
+        print_r($test -> load_file());
       }
       catch(Exception $e){
         echo 'Error: ', $e->getMessage(), " ";
@@ -19,5 +20,6 @@
      
 
     ?>
+    </pre>
   </body>
 </html>
