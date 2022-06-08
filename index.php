@@ -10,9 +10,12 @@
     <pre>
     <?php
       include 'FileReader.php';
+      include 'DataAnalyser.php';
       try {
-        $test = new FileReader("your_filename.json");
-        print_r($test -> load_file());
+        
+        $test = new FileReader("wpisy.json");
+        $janal = new DataAnalyser($test -> load_file());
+        var_dump($janal);
       }
       catch(Exception $e){
         echo 'Error: ', $e->getMessage(), " ";

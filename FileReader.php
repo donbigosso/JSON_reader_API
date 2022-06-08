@@ -24,7 +24,9 @@
                 throw new Exception("File not found. Please check the path.");
             }
             $file_json_content  = json_decode(file_get_contents($file_path), TRUE);
-        
+            if (!$file_json_content){
+                throw new Exception('JSON provided is incorrect. Please check its content.'); 
+            }
             return $file_json_content;
         }
     }
