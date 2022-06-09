@@ -25,7 +25,7 @@
             }
             $file_json_content  = json_decode(file_get_contents($file_path), TRUE);
             if (!$file_json_content){
-                throw new Exception('JSON provided is incorrect. Please check its content.'); 
+                throw new Exception('JSON provided is incorrect. Please check its'); 
             }
             return $file_json_content;
         }
