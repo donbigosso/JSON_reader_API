@@ -32,8 +32,11 @@
       try {
         
         $test = new FileReader("motorbikeList.json");
-        $janal = new DataAnalyser($test_array);
-        print_r($janal -> get_keys_from_0_index());
+        //$janal = new DataAnalyser($test_array);
+        $janal = new DataAnalyser($test->load_file());
+        //print_r($janal -> get_keys_from_0_index());
+        echo $janal -> get_value(5,"pic");
+        //$janal -> check_the_first_index();
         //print_r($janal);
       }
       catch(Exception $e){
