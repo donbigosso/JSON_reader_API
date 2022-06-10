@@ -25,19 +25,26 @@
         "availability" => true,
         "pic" => "cross"]
       ];
-      $test_array_2 = [1,2,3,4,5,6];
+      $new_entry = [
+        "name" => "Furo Maduro",
+        "engine" => 666,
+        "production_date" => 1966,
+        "price" => 1666,
+        "availability" => true,
+        "pic" => "kaszanka",
+      ];
       
       include 'FileReader.php';
-      include 'DataAnalyser.php';
+      include 'DataModifier.php';
       try {
         
         $test = new FileReader("motorbikeList.json");
-        //$janal = new DataAnalyser($test_array);
-        $janal = new DataAnalyser($test->load_file());
-        //print_r($janal -> get_keys_from_0_index());
-        echo $janal -> get_value(5,"pic");
-        //$janal -> check_the_first_index();
-        //print_r($janal);
+        $janal = new DataModifier($test_array);
+        //$janal = new DataModifier($test->load_file());
+        //var_dump($janal -> remove_index(0));
+        var_dump($janal -> add_object_to_data_beg($new_entry));
+        //$janal -> get_keys_from_index_0();
+        
       }
       catch(Exception $e){
         echo 'Error: ', $e->getMessage(), " ";

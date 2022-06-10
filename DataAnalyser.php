@@ -10,10 +10,12 @@
             }
           
             $this ->constructed_data = $json_data;
+            $this->check_key_consistency();
             
         }
 
-        public function check_the_first_index(){
+        public function get_keys_from_index_0(){
+            
             $main_keys = array_keys($this ->constructed_data);
             return $main_keys[0];
         }
@@ -31,7 +33,8 @@
         }
 
         public function get_keys(){
-            $first_index = $this->check_the_first_index();
+            
+            $first_index = $this->get_keys_from_index_0();
             if ($first_index === 0){
                 return array_keys($this -> get_index_0());
             }
@@ -44,18 +47,34 @@
             $key_array = $this -> get_keys();
             foreach($data as $key => $value){
                 if (array_keys($value) != $key_array) {
-                    throw new Exception("Keys are inconsistent. First occurence at index: ".$key);
+                    throw new Exception("Data keys are inconsistent.");
                 }
             }
 
         }
+        public function check_index($index){
+            $last_index = $this->get_data_length()-1;
+            if ($this->get_keys_from_index_0()!==0){
+                throw new Exception("Data must consist of indexed key -> value arrays. The first key of provided data is '{$this->get_keys_from_index_0()}' and it must be a '0' index.");
+            }
+            if ((gettype($index) != "integer") or $index < 0 or $index > $last_index){
+                throw new Exception("Key must be an integer value between 0 and ".$last_index);
+            }
+        }
+        public function check_key($key_name){
+            $key_array = $this->get_keys();
+            $key_strings = implode(", ",$key_array);
+            if (!in_array($key_name, $key_array)){
+                throw new Exception("Key '{$key_name}' is not present in the data. Please choose one of the following keys: {$key_strings}");
+            }
+        }
+
         public function get_value($index, $key_name){
-            
             $last_index = $this->get_data_length()-1;
             $key_array = $this->get_keys();
             $key_strings = implode(", ",$key_array);
-            if ($this->check_the_first_index()!==0){
-                throw new Exception("Data must consist of indexed key -> value arrays. The first key of provided data is '{$this->check_the_first_index()}' and it must be a '0' index.");
+            if ($this->get_keys_from_index_0()!==0){
+                throw new Exception("Data must consist of indexed key -> value arrays. The first key of provided data is '{$this->get_keys_from_index_0()}' and it must be a '0' index.");
             }
             if ((gettype($index) != "integer") or $index < 0 or $index > $last_index){
                 throw new Exception("Key must be an integer value between 0 and ".$last_index);
@@ -68,9 +87,5 @@
             }
             return $this ->constructed_data[$index][$key_name];
         }
-
-
-
-        
-    }
+     }
 ?>
