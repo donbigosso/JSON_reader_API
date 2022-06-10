@@ -26,24 +26,25 @@
         "pic" => "cross"]
       ];
       $new_entry = [
-        "name" => "Furo Maduro",
-        "engine" => 666,
+        "name" => "Nowy nowy",
+        "engine" => 19,
         "production_date" => 1966,
         "price" => 1666,
-        "availability" => true,
-        "pic" => "kaszanka",
+        "availability" => false,
+        "pic" => "kapusta",
       ];
       
-      include 'FileReader.php';
+     // include 'FileReader.php';
       include 'DataModifier.php';
+      include 'FileWriter.php';
       try {
         
-        $test = new FileReader("motorbikeList.json");
-        $janal = new DataModifier($test_array);
-        //$janal = new DataModifier($test->load_file());
-        //var_dump($janal -> remove_index(0));
-        var_dump($janal -> add_object_to_data_beg($new_entry));
-        //$janal -> get_keys_from_index_0();
+        $test = new FileWriter("motorbikeList.json");
+        $janal = new DataModifier($test->load_file());
+        $test->write_data_to_file($janal -> add_object_to_data_beg($new_entry));
+        $after_edit = new DataModifier($test->load_file());
+        var_dump($after_edit);
+       
         
       }
       catch(Exception $e){
