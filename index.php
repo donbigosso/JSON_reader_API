@@ -26,7 +26,7 @@
         "pic" => "cross"]
       ];
       $new_entry = [
-        "name" => "Nowy nowy",
+        "name" => "Koniec i kropka",
         "engine" => 19,
         "production_date" => 1966,
         "price" => 1666,
@@ -40,8 +40,8 @@
       try {
         
         $test = new FileWriter("motorbikeList.json");
-        $janal = new DataModifier($test->load_file());
-        $test->write_data_to_file($janal -> add_object_to_data_beg($new_entry));
+        $leszek = new DataModifier($test->load_file());
+        $test->write_data_to_file($leszek -> change_value_in_index(2,"pic","naleśniki"));
         $after_edit = new DataModifier($test->load_file());
         var_dump($after_edit);
        
