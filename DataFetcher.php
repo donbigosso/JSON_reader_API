@@ -1,12 +1,29 @@
 <?php
-   include 'FileWriter.php';
-   include 'DataModifier.php';
-   $posted_data = file_get_contents("php://input");
-   $decoded_data = json_decode($posted_data, TRUE);
-   $input_data= ($decoded_data["data"]);
-   $file_to_be_modified = new FileWriter('motorbikeList.json');
-   $modifier = new DataModifier($file_to_be_modified->load_file());
-   print_r ($modifier -> add_object_to_data_beg($input_data));
+  class DataFetcher {
+      public function __construct() {
+        $this->posted_data = file_get_contents("php://input");
+        $this->decoded_data = json_decode($this->posted_data, TRUE);
+      }
 
+      public function print_data(){
+         echo "Task: ".$this->decoded_data["task"]."\n";
+         echo "File name: ".$this->decoded_data["filename"]."\n";
+         echo "Current index: ".$this->decoded_data["index"]."\n";
+         print_r($this->decoded_data["data"]);
+      }
+      
+      public function return_index(){
+         return $this->decoded_data["index"];
+      }
+
+      public function return_entry(){
+         return $this->decoded_data["data"];
+      }
+
+      public function return_filename(){
+         return $this->decoded_data["filename"];
+      }
+
+  }
 
 ?>
