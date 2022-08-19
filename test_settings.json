@@ -1,0 +1,23 @@
+{
+  "settings": {
+    "apiPath": "http://localhost:80/my/JSON_manager_api/Api.php",
+    "jsonFilename": "conscious_pl_PL.json",
+    "jsonPath": "http://localhost:80/my/JSON_manager_api/"
+  },
+  "labelCaptions": {
+    "name": "Yet more new.",
+    "engine": "Motorbike engine",
+    "production_date": "Production date",
+    "price": "Rent price (per day)",
+    "availability": "Availability",
+    "pic": "Picture",
+    "imie": "Imioneczko",
+    "nazwisko": "Nazwisko",
+    "home_header": "Nagłówek home"
+  },
+  "fileNames": {
+    "motorbikeList.json": "Motorbikes",
+    "zTata.json": "Nazwa zmieniona",
+    "conscious_pl_PL.json": "Zawartość strony Conscious Wood (PL)"
+  }
+}
